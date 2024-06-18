@@ -67,7 +67,7 @@ rule alignment:
         {{ minimap2 -t {threads} -a --eqx --cs \
             {params.mm2_opts} \
             {input.ref} {input.query} \
-            | samtools view -F 4 -b -;}} \
+            | samtools view -F 4 -b - }} \
             > {output.aln} 2> {log}
         """
 
