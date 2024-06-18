@@ -64,10 +64,10 @@ rule alignment:
         mm2_opts=config.get("mm2_opts", "-x asm20 --secondary=no -s 25000 -K 15G"),
     shell:
         """
-        { minimap2 -t {threads} -a --eqx --cs \
+        {{ minimap2 -t {threads} -a --eqx --cs \
             {params.mm2_opts} \
             {input.ref} {input.query} \
-            | samtools view -F 4 -b -;} \
+            | samtools view -F 4 -;}} \
             > {output.aln} 2> {log}
         """
 
