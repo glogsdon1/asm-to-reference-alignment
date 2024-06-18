@@ -61,13 +61,13 @@ rule alignment:
         "../envs/env.yml"
     threads: config.get("aln_threads", 4)
     params:
-        mm2_opts=config.get("mm2_opts", "-x asm20 --secondary=no -s 25000 -K 8G"),
+        mm2_opts=config.get("mm2_opts", "-x asm20 --secondary=no -s 25000 -K 15G"),
     shell:
         """
         {{ minimap2 -t {threads} -a --eqx --cs \
             {params.mm2_opts} \
             {input.ref} {input.query} \
-            | samtools view -F 4 -b - }} \
+            | samtools view -F 4 -b -;}} \
             > {output.aln} 2> {log}
         """
 
